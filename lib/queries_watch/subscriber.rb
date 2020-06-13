@@ -21,7 +21,7 @@ module QueriesWatch
       level = Current.level
       name = ActiveSupport::LogSubscriber.new.send(:color, 'Queries', COLORS.fetch(level), true)
       message = "#{name} total_count: #{summary.total_count}, cached_count: #{summary.cached_count}, exec_count: #{summary.exec_count}, total_duration: #{summary.total_duration}"
-      Rails.logger.public_send(level, message)
+      Rails.logger.public_send(level, message) if summary.total_count > 0
     end
   end
 end
